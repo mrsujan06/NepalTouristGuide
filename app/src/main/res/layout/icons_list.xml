@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_classic"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="304dp"
+        android:layout_margin="5dp">
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:rowCount="2">
+
+            <Button
+                android:id="@+id/thingsToDoButton"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true"
+                android:text="Thing To Do" />
+
+            <Button
+                android:id="@+id/hotelButton"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true"
+                android:text="Restaurants" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:text="Cash Machine" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:text="Nature" />
+
+
+        </GridLayout>
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+
+
+
+
+
