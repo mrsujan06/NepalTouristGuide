@@ -14,10 +14,15 @@ import com.example.arvin.nepaltouristguide.view.NepalView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CampingSpot extends AppCompatActivity implements NepalView {
 
-    NepalPresenter mNepalPresenter;
+    @BindView(R.id.campingRV)
     RecyclerView mRecyclerView;
+    @Inject
+    NepalPresenter mNepalPresenter;
     CampingAdapter mAdapter;
 
     @Override
@@ -25,22 +30,15 @@ public class CampingSpot extends AppCompatActivity implements NepalView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camping);
 
-
         ((App) getApplicationContext()).getAppComponent().inject(this);
         mNepalPresenter.bind(this);
 
-        mRecyclerView = findViewById(R.id.campingRV);
+        ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CampingSpot.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
         mNepalPresenter.campingSpotCall("camping in " + place_name.toUpperCase(), "AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc");
     }
-
-    @Inject
-    public void getNepalPresenter(NepalPresenter presenter) {
-        this.mNepalPresenter = presenter;
-    }
-
 
     @Override
     public void updateUi(ApiResponse response) {

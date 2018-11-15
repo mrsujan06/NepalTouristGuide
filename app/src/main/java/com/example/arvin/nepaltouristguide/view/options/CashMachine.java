@@ -16,10 +16,14 @@ import com.example.arvin.nepaltouristguide.view.NepalView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CashMachine extends AppCompatActivity implements NepalView {
 
-    NepalPresenter mNepalPresenter;
+    @BindView(R.id.cashmachineRV)
     RecyclerView mRecyclerView;
+    NepalPresenter mNepalPresenter;
     CashMachineAdapter mAdapter;
 
     @Override
@@ -30,7 +34,7 @@ public class CashMachine extends AppCompatActivity implements NepalView {
         ((App) getApplication()).getAppComponent().inject(this);
         mNepalPresenter.bind(this);
 
-        mRecyclerView = findViewById(R.id.cashmachineRV);
+        ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachine.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");

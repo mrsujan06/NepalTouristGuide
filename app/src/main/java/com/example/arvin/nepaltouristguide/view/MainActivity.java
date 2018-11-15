@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NepalView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((App)getApplication()).getAppComponent().inject(this);
+        ((App) getApplication()).getAppComponent().inject(this);
 
         mNepalPresenter.bind(this);
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NepalView {
 
     @Inject
     public void getNepalPresenter(NepalPresenter presenter) {
-       this.mNepalPresenter = presenter;
+        this.mNepalPresenter = presenter;
     }
 
     @Override
@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements NepalView {
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
-
 
 
 }

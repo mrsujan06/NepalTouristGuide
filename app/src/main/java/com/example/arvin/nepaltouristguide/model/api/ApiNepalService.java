@@ -8,6 +8,7 @@ import retrofit2.http.Query;
 
 public interface ApiNepalService {
 
+    //https://maps.googleapis.com/maps/api/place/textsearch/json?query=bus+stops+in+pokhara&language=en&key=AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc
     @GET("/maps/api/place/textsearch/json?query=Top+cities+in+Nepal&language=en&key=AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc")
     Observable<ApiResponse> getTopCitiesInNepal();
 
@@ -19,7 +20,5 @@ public interface ApiNepalService {
 
     @GET("/maps/api/place/textsearch/json?")
     Observable<ApiResponse> getCashMachine(@Query("query") String query, @Query("key") String key);
-
-
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
 import com.example.arvin.nepaltouristguide.view.options.CashMachine;
+import com.example.arvin.nepaltouristguide.view.options.Mountain;
 import com.example.arvin.nepaltouristguide.view.options.Restaurant;
 
 
@@ -62,7 +64,8 @@ public class PlacesOptions extends AppCompatActivity {
     }
 
     public void mountain(View view) {
-        Toast.makeText(this, "Mountains", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(view.getContext(), Mountain.class);
+        view.getContext().startActivity(intent);
     }
 
     public void cashMachine(View view) {
@@ -77,5 +80,14 @@ public class PlacesOptions extends AppCompatActivity {
         view.getContext().startActivity(intent);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 }
