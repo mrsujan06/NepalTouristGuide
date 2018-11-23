@@ -27,7 +27,6 @@ public class PlacesOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places_options);
-
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,13 +49,11 @@ public class PlacesOptions extends AppCompatActivity {
     }
 
     private void setImage(String place_photo, String place_name) {
-
         Glide.with(this).asBitmap().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=" + place_photo + "&key=AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc").into(this.placePhoto);
         setTitle(place_name);
     }
 
     public void camping(View view) {
-
         Intent intent = new Intent(view.getContext(), CampingSpot.class);
         intent.putExtra("cityname", place_name);
         view.getContext().startActivity(intent);
@@ -80,14 +77,18 @@ public class PlacesOptions extends AppCompatActivity {
         view.getContext().startActivity(intent);
     }
 
+    //Backpress functionality from toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                Toast.makeText(this, "Back button is pressed bro", Toast.LENGTH_SHORT).show();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+
+
     }
 }

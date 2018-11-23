@@ -9,8 +9,11 @@ import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.adapter.RestaurantAdapter;
 import com.example.arvin.nepaltouristguide.dagger.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.Result;
 import com.example.arvin.nepaltouristguide.presenter.NepalPresenter;
 import com.example.arvin.nepaltouristguide.view.NepalView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -47,7 +50,7 @@ public class Restaurant extends AppCompatActivity implements NepalView {
     }
 
     @Override
-    public void updateUi(ApiResponse response) {
+    public void updateUi( ApiResponse response) {
         mAdapter = new RestaurantAdapter(response, this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();

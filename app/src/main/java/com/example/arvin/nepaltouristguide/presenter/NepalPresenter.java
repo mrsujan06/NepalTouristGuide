@@ -5,9 +5,15 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.adapter.NepalAdapter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
+import com.example.arvin.nepaltouristguide.model.Result;
+import com.example.arvin.nepaltouristguide.view.MainActivity;
 import com.example.arvin.nepaltouristguide.view.NepalView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,7 +25,9 @@ public class NepalPresenter {
 
     NepalView view;
     ApiNepalServiceInteractor mApiNepalServiceInteractor;
-    String TAG="Error Message";
+    ApiResponse mApiResponse;
+    List<Result> mResults ;
+    String TAG = "Error Message";
 
     @Inject
     public NepalPresenter(ApiNepalServiceInteractor mApiNepalServiceInteractor) {
@@ -42,6 +50,7 @@ public class NepalPresenter {
     @SuppressLint("CheckResult")
     public void networkCall() {
 
+
         mApiNepalServiceInteractor.getTopCitiesInNepal()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,20 +58,19 @@ public class NepalPresenter {
 
                     @Override
                     public void accept(ApiResponse apiResponse) throws Exception {
-
                         if (view != null) {
                             try {
                                 view.updateUi(apiResponse);
                             } catch (Exception e) {
-                                Log.i(TAG , e.getMessage());
+                                Log.i(TAG, e.getMessage());
                             }
                         }
                         Log.d("Success Message", " Success");
                     }
-                }, new Consumer<Throwable>() {
+                    }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG , throwable.getMessage());
+                        Log.i(TAG, throwable.getMessage());
                     }
                 });
 
@@ -83,7 +91,7 @@ public class NepalPresenter {
                             try {
                                 view.updateUi(apiResponse);
                             } catch (Exception e) {
-                                Log.i(TAG , e.getMessage());
+                                Log.i(TAG, e.getMessage());
                             }
                         }
                         Log.d("Success Message", " Success");
@@ -91,7 +99,7 @@ public class NepalPresenter {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG , throwable.getMessage());
+                        Log.i(TAG, throwable.getMessage());
                     }
                 });
 
@@ -112,7 +120,7 @@ public class NepalPresenter {
                             try {
                                 view.updateUi(apiResponse);
                             } catch (Exception e) {
-                                Log.i(TAG , e.getMessage());
+                                Log.i(TAG, e.getMessage());
                             }
                         }
                         Log.d("Success Message", " Success");
@@ -120,7 +128,7 @@ public class NepalPresenter {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG , throwable.getMessage());
+                        Log.i(TAG, throwable.getMessage());
                     }
                 });
 
@@ -141,7 +149,7 @@ public class NepalPresenter {
                             try {
                                 view.updateUi(apiResponse);
                             } catch (Exception e) {
-                                Log.i(TAG , e.getMessage());
+                                Log.i(TAG, e.getMessage());
                             }
                         }
                         Log.d("Success Message", " Success");
@@ -149,11 +157,19 @@ public class NepalPresenter {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG , throwable.getMessage());
+                        Log.i(TAG, throwable.getMessage());
                     }
                 });
 
     }
 
 
+    public ApiResponse getResults(){
+        mResults = mApiResponse.getResults();
+        return (ApiResponse) mResults;
+    }
+
+    public void setResults(List<Result> results) {
+        mResults = results;
+    }
 }

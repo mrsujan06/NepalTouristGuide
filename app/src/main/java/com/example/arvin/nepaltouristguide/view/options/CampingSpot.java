@@ -9,8 +9,11 @@ import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.adapter.CampingAdapter;
 import com.example.arvin.nepaltouristguide.dagger.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;;
+import com.example.arvin.nepaltouristguide.model.Result;
 import com.example.arvin.nepaltouristguide.presenter.NepalPresenter;
 import com.example.arvin.nepaltouristguide.view.NepalView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,6 +42,7 @@ public class CampingSpot extends AppCompatActivity implements NepalView {
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
         mNepalPresenter.campingSpotCall("camping in " + place_name.toUpperCase(), "AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc");
     }
+
 
     @Override
     public void updateUi(ApiResponse response) {

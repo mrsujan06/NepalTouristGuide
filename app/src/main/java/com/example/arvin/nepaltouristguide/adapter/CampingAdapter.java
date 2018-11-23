@@ -13,17 +13,23 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.Result;
 import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
+import com.example.arvin.nepaltouristguide.view.options.Restaurant;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class CampingAdapter extends RecyclerView.Adapter<CampingAdapter.CampingAdapterViewHolder> {
+
 
     ApiResponse mApiResponse;
     Context mContext;
 
-    public CampingAdapter(ApiResponse mApiResponse, Context mContext) {
-        this.mApiResponse = mApiResponse;
+    public CampingAdapter(ApiResponse mApiResponse , Context mContext) {
+        this.mApiResponse= mApiResponse;
         this.mContext = mContext;
+
     }
 
     @Override

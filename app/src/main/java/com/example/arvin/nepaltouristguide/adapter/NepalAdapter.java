@@ -13,17 +13,22 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.Result;
 import com.example.arvin.nepaltouristguide.view.PlacesOptions;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NepalAdapter extends RecyclerView.Adapter<NepalAdapter.NepalAdapterViewHolder> {
+
 
     ApiResponse mApiResponse;
     Context mContext;
 
-    public NepalAdapter(ApiResponse mApiResponse, Context mContext) {
-        this.mApiResponse = mApiResponse;
+    public NepalAdapter(ApiResponse mApiResponse , Context mContext) {
+        this.mApiResponse= mApiResponse;
         this.mContext = mContext;
+
     }
 
     @Override
@@ -43,7 +48,7 @@ public class NepalAdapter extends RecyclerView.Adapter<NepalAdapter.NepalAdapter
             holder.place_name.setText(mApiResponse.getResults().get(position).getName());
 
         } catch (Exception e) {
-            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -53,10 +58,14 @@ public class NepalAdapter extends RecyclerView.Adapter<NepalAdapter.NepalAdapter
         return mApiResponse.getResults().size();
     }
 
+
+
     class NepalAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView place_image;
         TextView place_name;
+        List<Result> mResults = new ArrayList<>();
+
 
         public NepalAdapterViewHolder(View itemView) {
             super(itemView);
@@ -66,7 +75,6 @@ public class NepalAdapter extends RecyclerView.Adapter<NepalAdapter.NepalAdapter
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
 
@@ -74,7 +82,7 @@ public class NepalAdapter extends RecyclerView.Adapter<NepalAdapter.NepalAdapter
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
             v.getContext().startActivity(intent);
-            Toast.makeText(mContext, mApiResponse.getResults().get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, result.get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
 
         }
     }
