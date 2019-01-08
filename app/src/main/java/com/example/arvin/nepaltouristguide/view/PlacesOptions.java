@@ -16,6 +16,8 @@ import com.example.arvin.nepaltouristguide.view.options.CashMachine;
 import com.example.arvin.nepaltouristguide.view.options.Mountain;
 import com.example.arvin.nepaltouristguide.view.options.Restaurant;
 
+import butterknife.OnClick;
+
 
 public class PlacesOptions extends AppCompatActivity {
 
@@ -63,6 +65,7 @@ public class PlacesOptions extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.mountainButton)
     public void mountain(View view) {
         Intent intent = new Intent(view.getContext(), Mountain.class);
         view.getContext().startActivity(intent);

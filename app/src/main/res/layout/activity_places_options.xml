@@ -83,7 +83,6 @@
                     android:layout_width="207dp"
                     android:layout_height="165dp"
                     android:background="@mipmap/mountain"
-                    android:onClick="mountain"
                     android:text="" />
 
                 <Button
