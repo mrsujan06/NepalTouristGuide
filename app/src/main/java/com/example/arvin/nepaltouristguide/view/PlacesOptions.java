@@ -16,6 +16,7 @@ import com.example.arvin.nepaltouristguide.view.options.CashMachine;
 import com.example.arvin.nepaltouristguide.view.options.Mountain;
 import com.example.arvin.nepaltouristguide.view.options.Restaurant;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -29,6 +30,8 @@ public class PlacesOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places_options);
+
+        ButterKnife.bind(this);
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
