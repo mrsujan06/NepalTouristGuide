@@ -57,6 +57,8 @@ public class PlacesOptions extends AppCompatActivity {
         setTitle(place_name);
     }
 
+
+    @OnClick(R.id.campingButton)
     public void camping(View view) {
 
         Intent intent = new Intent(view.getContext(), CampingSpot.class);
@@ -71,12 +73,14 @@ public class PlacesOptions extends AppCompatActivity {
         view.getContext().startActivity(intent);
     }
 
+    @OnClick(R.id.cashMachineButton)
     public void cashMachine(View view) {
         Intent intent = new Intent(view.getContext(), CashMachine.class);
         intent.putExtra("cityname", place_name);
         view.getContext().startActivity(intent);
     }
 
+    @OnClick(R.id.RestaurantButton)
     public void restaurants(View view) {
         Intent intent = new Intent(view.getContext(), Restaurant.class);
         intent.putExtra("c_name", place_name);

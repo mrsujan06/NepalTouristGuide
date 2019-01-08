@@ -69,11 +69,10 @@
                 app:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/camping_id"
+                    android:id="@+id/campingButton"
                     android:layout_width="207dp"
                     android:layout_height="165dp"
                     android:background="@mipmap/camping"
-                    android:onClick="camping"
                     android:text=""
                     app:layout_column="0"
                     app:layout_row="0" />
@@ -90,7 +89,6 @@
                     android:layout_width="207dp"
                     android:layout_height="165dp"
                     android:background="@mipmap/atm"
-                    android:onClick="cashMachine"
                     android:text="" />
 
                 <Button
@@ -98,7 +96,6 @@
                     android:layout_width="207dp"
                     android:layout_height="165dp"
                     android:background="@mipmap/restaurants"
-                    android:onClick="restaurants"
                     android:text="" />
 
 
