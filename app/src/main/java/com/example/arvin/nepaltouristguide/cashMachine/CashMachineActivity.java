@@ -1,4 +1,4 @@
-package com.example.arvin.nepaltouristguide.view.options;
+package com.example.arvin.nepaltouristguide.cashMachine;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,24 +6,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.arvin.nepaltouristguide.R;
-import com.example.arvin.nepaltouristguide.adapter.CashMachineAdapter;
+import com.example.arvin.nepaltouristguide.base.BaseActivity;
 import com.example.arvin.nepaltouristguide.dagger.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
-import com.example.arvin.nepaltouristguide.model.Interactor.ApiServiceInteractorImp;
-import com.example.arvin.nepaltouristguide.presenter.NepalPresenter;
-import com.example.arvin.nepaltouristguide.view.NepalView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CashMachine extends AppCompatActivity implements NepalView {
+import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
+
+public class CashMachineActivity extends BaseActivity implements CashMachineView {
 
     @BindView(R.id.cashmachineRV)
     RecyclerView mRecyclerView;
-    NepalPresenter mNepalPresenter;
+    @Inject
+    CashMachinePresenter mCashMachinePresenter;
     CashMachineAdapter mAdapter;
 
     @Override
@@ -32,30 +31,33 @@ public class CashMachine extends AppCompatActivity implements NepalView {
         setContentView(R.layout.activity_cash_machine);
 
         ((App) getApplication()).getAppComponent().inject(this);
-        mNepalPresenter.bind(this);
+        mCashMachinePresenter.bind(this);
 
         ButterKnife.bind(this);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachine.this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachineActivity.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mNepalPresenter.cashMachineCall("ATM in " + place_name.toUpperCase(), "AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc");
-
-
-    }
-
-
-
-    @Inject
-    public void getNepalPresenter(NepalPresenter presenter) {
-        this.mNepalPresenter = presenter;
+        mCashMachinePresenter.listAllCashMachine("ATM+in+" + place_name.toUpperCase(), API_KEY);
     }
 
     @Override
-    public void updateUi(ApiResponse response) {
+    public void onFetchDataProgress() {
+        showLoading();
+    }
 
+    @Override
+    public void onFetchDataSuccess(ApiResponse response) {
         mAdapter = new CashMachineAdapter(response, this);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+        hideLoading();
+    }
+
+    @Override
+    public void onFetchDataError(String error) {
+        showMessage(error);
+        hideLoading();
 
     }
+
+
 }

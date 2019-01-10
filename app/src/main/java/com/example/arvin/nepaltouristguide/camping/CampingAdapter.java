@@ -1,4 +1,4 @@
-package com.example.arvin.nepaltouristguide.adapter;
+package com.example.arvin.nepaltouristguide.camping;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,28 +13,26 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
-import com.example.arvin.nepaltouristguide.view.options.Mountain;
 import com.squareup.picasso.Picasso;
 
-public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.MountainAdapterViewHolder> {
+public class CampingAdapter extends RecyclerView.Adapter<CampingAdapter.CampingAdapterViewHolder> {
 
     ApiResponse mApiResponse;
     Context mContext;
 
-    public MountainAdapter(ApiResponse mApiResponse, Context mContext) {
+    public CampingAdapter(ApiResponse mApiResponse, Context mContext) {
         this.mApiResponse = mApiResponse;
         this.mContext = mContext;
     }
 
     @Override
-    public MountainAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CampingAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_of_places_layout, parent, false);
-        return new MountainAdapterViewHolder(view);
+        return new CampingAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MountainAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CampingAdapterViewHolder holder, int position) {
 
         try {
             String photoReference = mApiResponse.getResults().get(position).getPhotos().get(0).getPhotoReference();
@@ -56,12 +54,12 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
         return mApiResponse.getResults().size();
     }
 
-    class MountainAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class CampingAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView place_image;
         TextView place_name;
 
-        public MountainAdapterViewHolder(View itemView) {
+        public CampingAdapterViewHolder(View itemView) {
             super(itemView);
             place_image = itemView.findViewById(R.id.place_picture);
             place_name = itemView.findViewById(R.id.place_name);
@@ -72,7 +70,7 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), Mountain.class);
+            Intent intent = new Intent(v.getContext(), CampingActivity.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
 

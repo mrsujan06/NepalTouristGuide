@@ -7,13 +7,12 @@
 
     <application
         android:name=".dagger.App"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".home.VisitNepalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.PlacesOptions"
+            android:name=".placeOptions.PlacesOptions"
             android:label="@string/pokhara"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.options.CampingSpot" />
-        <activity android:name=".view.options.Restaurant" />
-        <activity android:name=".view.options.CashMachine" />
-        <activity android:name=".view.options.Mountain"></activity>
+        <activity android:name=".camping.CampingActivity" />
+        <activity android:name=".restaurant.RestaurantActivity" />
+        <activity android:name=".cashMachine.CashMachineActivity" />
+        <activity android:name=".mountain.Mountain"></activity>
     </application>
 
 </manifest>

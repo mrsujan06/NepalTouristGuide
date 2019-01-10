@@ -1,5 +1,4 @@
-package com.example.arvin.nepaltouristguide.adapter;
-
+package com.example.arvin.nepaltouristguide.restaurant;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,27 +13,26 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
 import com.squareup.picasso.Picasso;
 
-public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.CashMachineAdapterViewHolder> {
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantAdapterViewHolder> {
 
     ApiResponse mApiResponse;
     Context mContext;
 
-    public CashMachineAdapter(ApiResponse mApiResponse, Context mContext) {
+    public RestaurantAdapter(ApiResponse mApiResponse, Context mContext) {
         this.mApiResponse = mApiResponse;
         this.mContext = mContext;
     }
 
     @Override
-    public CashMachineAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RestaurantAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_of_places_layout, parent, false);
-        return new CashMachineAdapterViewHolder(view);
+        return new RestaurantAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CashMachineAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RestaurantAdapterViewHolder holder, int position) {
 
         try {
             String photoReference = mApiResponse.getResults().get(position).getPhotos().get(0).getPhotoReference();
@@ -46,8 +44,6 @@ public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.
         } catch (Exception e) {
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
 
@@ -56,12 +52,12 @@ public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.
         return mApiResponse.getResults().size();
     }
 
-    class CashMachineAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class RestaurantAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView place_image;
         TextView place_name;
 
-        public CashMachineAdapterViewHolder(View itemView) {
+        public RestaurantAdapterViewHolder(View itemView) {
             super(itemView);
             place_image = itemView.findViewById(R.id.place_picture);
             place_name = itemView.findViewById(R.id.place_name);
@@ -69,10 +65,9 @@ public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), CampingSpot.class);
+            Intent intent = new Intent(v.getContext(), RestaurantActivity.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
 

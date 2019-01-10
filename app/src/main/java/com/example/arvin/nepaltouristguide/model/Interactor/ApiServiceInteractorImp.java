@@ -36,12 +36,17 @@ public class ApiServiceInteractorImp implements ApiNepalServiceInteractor {
 
     @Override
     public Observable<ApiResponse> getRestaurants(String query, String key) {
-        return mService.getRestaurants(query, key);
+        return mService.getRestaurants(query , key);
     }
 
     @Override
     public Observable<ApiResponse> getCashMachine(String query, String key) {
         return mService.getCashMachine(query,key);
+    }
+
+    @Override
+    public Observable<ApiResponse> getMountains(String query, String key) {
+        return mService.getMountains();
     }
 
 

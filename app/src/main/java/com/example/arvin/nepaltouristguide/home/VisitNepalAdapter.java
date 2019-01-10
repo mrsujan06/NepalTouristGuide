@@ -1,4 +1,4 @@
-package com.example.arvin.nepaltouristguide.adapter;
+package com.example.arvin.nepaltouristguide.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,27 +13,27 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptions;
 import com.squareup.picasso.Picasso;
 
-public class CampingAdapter extends RecyclerView.Adapter<CampingAdapter.CampingAdapterViewHolder> {
+public class VisitNepalAdapter extends RecyclerView.Adapter<VisitNepalAdapter.NepalAdapterViewHolder> {
 
     ApiResponse mApiResponse;
     Context mContext;
 
-    public CampingAdapter(ApiResponse mApiResponse, Context mContext) {
+    public VisitNepalAdapter(ApiResponse mApiResponse, Context mContext) {
         this.mApiResponse = mApiResponse;
         this.mContext = mContext;
     }
 
     @Override
-    public CampingAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_of_places_layout, parent, false);
-        return new CampingAdapterViewHolder(view);
+    public NepalAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.places_layout, parent, false);
+        return new NepalAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CampingAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NepalAdapterViewHolder holder, int position) {
 
         try {
             String photoReference = mApiResponse.getResults().get(position).getPhotos().get(0).getPhotoReference();
@@ -46,21 +46,19 @@ public class CampingAdapter extends RecyclerView.Adapter<CampingAdapter.CampingA
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-
     }
-
 
     @Override
     public int getItemCount() {
         return mApiResponse.getResults().size();
     }
 
-    class CampingAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class NepalAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView place_image;
         TextView place_name;
 
-        public CampingAdapterViewHolder(View itemView) {
+        public NepalAdapterViewHolder(View itemView) {
             super(itemView);
             place_image = itemView.findViewById(R.id.place_picture);
             place_name = itemView.findViewById(R.id.place_name);
@@ -71,10 +69,10 @@ public class CampingAdapter extends RecyclerView.Adapter<CampingAdapter.CampingA
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), CampingSpot.class);
+
+            Intent intent = new Intent(v.getContext(), PlacesOptions.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
-
             v.getContext().startActivity(intent);
             Toast.makeText(mContext, mApiResponse.getResults().get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
 

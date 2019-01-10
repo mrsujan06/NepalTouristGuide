@@ -1,4 +1,4 @@
-package com.example.arvin.nepaltouristguide.view;
+package com.example.arvin.nepaltouristguide.placeOptions;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,24 +7,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.arvin.nepaltouristguide.R;
-import com.example.arvin.nepaltouristguide.view.options.CampingSpot;
-import com.example.arvin.nepaltouristguide.view.options.CashMachine;
-import com.example.arvin.nepaltouristguide.view.options.Mountain;
-import com.example.arvin.nepaltouristguide.view.options.Restaurant;
+import com.example.arvin.nepaltouristguide.camping.CampingActivity;
+import com.example.arvin.nepaltouristguide.cashMachine.CashMachineActivity;
+import com.example.arvin.nepaltouristguide.restaurant.RestaurantActivity;
+import com.example.arvin.nepaltouristguide.mountain.Mountain;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class PlacesOptions extends AppCompatActivity {
 
+    @BindView(R.id.placePhoto)
     ImageView placePhoto;
-    String place_name;
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    String place_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,8 @@ public class PlacesOptions extends AppCompatActivity {
         setContentView(R.layout.activity_places_options);
 
         ButterKnife.bind(this);
-
-        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        placePhoto = findViewById(R.id.placePhoto);
         getIncomingIntent();
 
     }
@@ -49,7 +48,6 @@ public class PlacesOptions extends AppCompatActivity {
             String place_photo = (String) getIntent().getExtras().getSerializable("place_photo");
             place_name = (String) getIntent().getExtras().getSerializable("place_name");
             setImage(place_photo, place_name);
-
         }
 
     }
@@ -64,7 +62,7 @@ public class PlacesOptions extends AppCompatActivity {
     @OnClick(R.id.campingButton)
     public void startCampingActivity(View view) {
 
-        Intent intent = new Intent(view.getContext(), CampingSpot.class);
+        Intent intent = new Intent(view.getContext(), CampingActivity.class);
         intent.putExtra("cityname", place_name);
         view.getContext().startActivity(intent);
 
@@ -78,15 +76,15 @@ public class PlacesOptions extends AppCompatActivity {
 
     @OnClick(R.id.cashMachineButton)
     public void startCashMachineActivity(View view) {
-        Intent intent = new Intent(view.getContext(), CashMachine.class);
+        Intent intent = new Intent(view.getContext(), CashMachineActivity.class);
         intent.putExtra("cityname", place_name);
         view.getContext().startActivity(intent);
     }
 
     @OnClick(R.id.RestaurantButton)
     public void startRestaurantActivity(View view) {
-        Intent intent = new Intent(view.getContext(), Restaurant.class);
-        intent.putExtra("c_name", place_name);
+        Intent intent = new Intent(view.getContext(), RestaurantActivity.class);
+        intent.putExtra("cityname", place_name);
         view.getContext().startActivity(intent);
     }
 

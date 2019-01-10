@@ -10,4 +10,6 @@ public interface ApiNepalServiceInteractor {
     Observable<ApiResponse> getCampingSpots(String query , String key);
     Observable<ApiResponse> getRestaurants(String query , String key);
     Observable<ApiResponse> getCashMachine(String query , String key);
+    Observable<ApiResponse> getMountains(String query , String key);
+
 }
