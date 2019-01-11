@@ -16,7 +16,7 @@
     </style>
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/green</item>
+        <item name="colorAccent">@color/lightblue</item>
     </style>
 
 </resources>

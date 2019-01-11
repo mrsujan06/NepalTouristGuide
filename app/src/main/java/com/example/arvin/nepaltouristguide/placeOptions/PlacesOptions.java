@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.arvin.nepaltouristguide.R;
+import com.example.arvin.nepaltouristguide.base.BaseActivity;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
 import com.example.arvin.nepaltouristguide.cashMachine.CashMachineActivity;
 import com.example.arvin.nepaltouristguide.restaurant.RestaurantActivity;
@@ -19,8 +20,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class PlacesOptions extends AppCompatActivity {
+
+public class PlacesOptions extends BaseActivity implements PlaceOptionView {
 
     @BindView(R.id.placePhoto)
     ImageView placePhoto;
@@ -40,7 +43,8 @@ public class PlacesOptions extends AppCompatActivity {
 
     }
 
-    private void getIncomingIntent() {
+    @Override
+    public void getIncomingIntent() {
 
         if (getIntent().hasExtra("place_photo") && getIntent().hasExtra("place_name"))
 
@@ -52,9 +56,11 @@ public class PlacesOptions extends AppCompatActivity {
 
     }
 
-    private void setImage(String place_photo, String place_name) {
 
-        Glide.with(this).asBitmap().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=" + place_photo + "&key=AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc").into(this.placePhoto);
+    @Override
+    public void setImage(String place_photo, String place_name) {
+        Glide.with(this).asBitmap().load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=" + place_photo + "&key=" + API_KEY
+        ).into(this.placePhoto);
         setTitle(place_name);
     }
 
@@ -98,4 +104,5 @@ public class PlacesOptions extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
