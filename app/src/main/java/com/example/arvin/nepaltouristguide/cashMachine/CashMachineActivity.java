@@ -1,13 +1,12 @@
 package com.example.arvin.nepaltouristguide.cashMachine;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.dagger.App;
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
 import javax.inject.Inject;
@@ -21,9 +20,11 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
 
     @BindView(R.id.cashmachineRV)
     RecyclerView mRecyclerView;
+
     @Inject
     CashMachinePresenter mCashMachinePresenter;
-    CashMachineAdapter mAdapter;
+
+    private CashMachineAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachineActivity.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mCashMachinePresenter.listAllCashMachine("ATM+in+" + place_name.toUpperCase(), API_KEY);
+        mCashMachinePresenter.listAllCashMachine(place_name, API_KEY);
     }
 
     @Override
@@ -59,5 +60,9 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        mCashMachinePresenter.unbind();
+        super.onDestroy();
+    }
 }

@@ -8,5 +8,4 @@ public interface CampingView extends MvpView {
     void onFetchDataProgress();
     void onFetchDataSuccess(ApiResponse response);
     void onFetchDataError(String error);
-
 }

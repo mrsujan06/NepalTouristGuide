@@ -1,6 +1,5 @@
 package com.example.arvin.nepaltouristguide.mountain;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +7,7 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.dagger.App;
-import com.example.arvin.nepaltouristguide.home.VisitNepalPresenter;
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
 import javax.inject.Inject;
@@ -23,10 +21,13 @@ public class Mountain extends BaseActivity implements MountainView {
 
     @BindView(R.id.mountainRV)
     RecyclerView mRecyclerView;
+
     @Inject
     MountainPresenter mMountainPresenter;
-    MountainAdapter mAdapter;
 
+    private MountainAdapter mAdapter;
+    private static final String API_KEY_MOUNTAIN = API_KEY;
+    private String mountainInNepal = "Mountains+in+nepal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +41,7 @@ public class Mountain extends BaseActivity implements MountainView {
         ButterKnife.bind(this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(Mountain.this));
-        mMountainPresenter.listOfMountain("Mountains+in+nepal ", API_KEY);
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        mMountainPresenter.unbind();
-        super.onDestroy();
+        mMountainPresenter.listOfMountain(mountainInNepal, API_KEY_MOUNTAIN);
     }
 
     @Override
@@ -60,13 +54,18 @@ public class Mountain extends BaseActivity implements MountainView {
         mAdapter = new MountainAdapter(response, this);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
-
     }
 
     @Override
     public void onFetchDataError(String error) {
-
         Toast.makeText(this, "Error on MountainActivity", Toast.LENGTH_SHORT).show();
         hideLoading();
     }
+
+    @Override
+    protected void onDestroy() {
+        mMountainPresenter.unbind();
+        super.onDestroy();
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.arvin.nepaltouristguide.camping;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,24 +7,25 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.base.MvpView;
-import com.example.arvin.nepaltouristguide.dagger.App;
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;;
-import com.example.arvin.nepaltouristguide.home.VisitNepalPresenter;
-import com.example.arvin.nepaltouristguide.home.VisitNepalView;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
+
 public class CampingActivity extends BaseActivity implements CampingView {
 
     @BindView(R.id.campingRV)
     RecyclerView mRecyclerView;
+
     @Inject
     CampingPresenter mCampingPresenter;
-    CampingAdapter mAdapter;
+
+    private CampingAdapter mAdapter;
+    private static final String apiKeyCampingSpot = API_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,7 @@ public class CampingActivity extends BaseActivity implements CampingView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CampingActivity.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mCampingPresenter.listAllCampingSpots("Camping+in+" + place_name.toUpperCase(), "AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc");
-    }
-
-    @Override
-    protected void onDestroy() {
-        mCampingPresenter.unbind();
-        super.onDestroy();
+        mCampingPresenter.listAllCampingSpots(place_name, apiKeyCampingSpot);
     }
 
     @Override
@@ -65,4 +59,12 @@ public class CampingActivity extends BaseActivity implements CampingView {
         Toast.makeText(this, "Error on Camping Activity", Toast.LENGTH_SHORT).show();
         hideLoading();
     }
+
+
+    @Override
+    protected void onDestroy() {
+        mCampingPresenter.unbind();
+        super.onDestroy();
+    }
+
 }

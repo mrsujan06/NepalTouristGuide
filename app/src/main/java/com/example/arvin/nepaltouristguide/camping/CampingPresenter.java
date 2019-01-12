@@ -3,7 +3,6 @@ package com.example.arvin.nepaltouristguide.camping;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-
 import com.example.arvin.nepaltouristguide.base.BasePresenter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
@@ -18,7 +17,6 @@ public class CampingPresenter extends BasePresenter<CampingView> {
 
     private static final String TAG = "ERROR MESSAGE";
 
-
     @Inject
     public CampingPresenter(ApiNepalServiceInteractor apiNepalServiceInteractor) {
         mApiNepalServiceInteractor = apiNepalServiceInteractor;
@@ -27,6 +25,7 @@ public class CampingPresenter extends BasePresenter<CampingView> {
     @SuppressLint("CheckResult")
     public void listAllCampingSpots(String query, String key) {
 
+        query = "Camping+in+" + query.toUpperCase();
         getApiNepalServiceInteractor().getCampingSpots(query, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -25,6 +25,7 @@ public class CashMachinePresenter extends BasePresenter<CashMachineView> {
     @SuppressLint("CheckResult")
     public void listAllCashMachine(String query, String key) {
 
+        query = "ATM+in+" + query.toUpperCase();
         getApiNepalServiceInteractor().getCashMachine(query, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

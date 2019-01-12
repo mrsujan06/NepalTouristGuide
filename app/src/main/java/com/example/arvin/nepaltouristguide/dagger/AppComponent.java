@@ -11,9 +11,13 @@ import dagger.Component;
 @Component(modules = {NepalGuideModule.class})
 public interface AppComponent {
     void inject(VisitNepalActivity activity);
+
     void inject(CampingActivity campingActivity);
+
     void inject(RestaurantActivity restaurantActivity);
+
     void inject(CashMachineActivity cashMachineActivity);
+
     void inject(Mountain mountain);
 
 }

@@ -2,11 +2,10 @@ package com.example.arvin.nepaltouristguide.base;
 
 import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
 
-
 public class BasePresenter<V extends MvpView> {
 
-    private V mMvpView;
     protected ApiNepalServiceInteractor mApiNepalServiceInteractor;
+    private V mMvpView;
 
     public void bind(V view) {
         this.mMvpView = view;

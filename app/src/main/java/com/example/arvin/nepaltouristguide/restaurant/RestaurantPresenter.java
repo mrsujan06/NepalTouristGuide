@@ -22,10 +22,10 @@ public class RestaurantPresenter extends BasePresenter<RestaurantView> {
         this.mApiNepalServiceInteractor = apiNepalServiceInteractor;
     }
 
-
     @SuppressLint("CheckResult")
     public void listAllRestaurants(String query, String key) {
 
+        query = "Restaurants+in+" + query.toUpperCase();
         getApiNepalServiceInteractor().getRestaurants(query, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,6 +51,5 @@ public class RestaurantPresenter extends BasePresenter<RestaurantView> {
                 });
 
         getMvpView().onFetchDataProgress();
-
     }
 }

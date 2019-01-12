@@ -6,7 +6,6 @@ import android.util.Log;
 import com.example.arvin.nepaltouristguide.base.BasePresenter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
-import com.example.arvin.nepaltouristguide.home.VisitNepalView;
 
 import javax.inject.Inject;
 
@@ -16,7 +15,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
 
-    VisitNepalView view;
     String TAG = "Error Message";
 
     @Inject
@@ -27,7 +25,6 @@ public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
     /**
      * Methods
      ***/
-
     @SuppressLint("CheckResult")
     public void networkCall() {
 
@@ -55,7 +52,7 @@ public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
                     }
                 });
 
-         getMvpView().onFetchDataProgress();
+        getMvpView().onFetchDataProgress();
 
     }
 

@@ -1,6 +1,5 @@
 package com.example.arvin.nepaltouristguide.cashMachine;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.squareup.picasso.Picasso;
 
@@ -47,9 +47,7 @@ public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -69,18 +67,14 @@ public class CashMachineAdapter extends RecyclerView.Adapter<CashMachineAdapter.
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), CampingActivity.class);
+            Intent intent = new Intent(App.getInstance().getContext(), CampingActivity.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
-
             v.getContext().startActivity(intent);
             Toast.makeText(mContext, mApiResponse.getResults().get(getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-
         }
     }
-
 
 }
