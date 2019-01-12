@@ -13,14 +13,14 @@ import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
 import com.example.arvin.nepaltouristguide.cashMachine.CashMachineActivity;
 import com.example.arvin.nepaltouristguide.restaurant.RestaurantActivity;
-import com.example.arvin.nepaltouristguide.mountain.Mountain;
+import com.example.arvin.nepaltouristguide.mountain.MountainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class PlacesOptions extends AppCompatActivity {
+public class PlacesOptionsActivity extends AppCompatActivity {
 
     @BindView(R.id.placePhoto)
     ImageView placePhoto;
@@ -70,7 +70,7 @@ public class PlacesOptions extends AppCompatActivity {
 
     @OnClick(R.id.mountainButton)
     public void startMountainActivity(View view) {
-        Intent intent = new Intent(view.getContext(), Mountain.class);
+        Intent intent = new Intent(view.getContext(), MountainActivity.class);
         view.getContext().startActivity(intent);
     }
 

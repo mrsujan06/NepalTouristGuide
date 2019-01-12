@@ -25,21 +25,26 @@ public class CampingActivity extends BaseActivity implements CampingView {
     CampingPresenter mCampingPresenter;
 
     private CampingAdapter mAdapter;
-    private static final String apiKeyCampingSpot = API_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camping);
-
         ((App) getApplicationContext()).getAppComponent().inject(this);
         mCampingPresenter.bind(this);
 
-        ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CampingActivity.this));
 
-        String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mCampingPresenter.listAllCampingSpots(place_name, apiKeyCampingSpot);
+        String place_Name = (String) getIntent().getExtras().getSerializable("cityname");
+        getCampingSpotsByPlace(place_Name);
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_camping;
+    }
+
+    private void getCampingSpotsByPlace(String placeName){
+        mCampingPresenter.listAllCampingSpots(placeName, API_KEY);
     }
 
     @Override

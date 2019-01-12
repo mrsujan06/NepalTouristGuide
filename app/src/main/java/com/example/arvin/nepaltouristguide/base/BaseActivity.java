@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +16,22 @@ import android.widget.Toast;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.utils.CommonUtils;
 
-public class BaseActivity extends AppCompatActivity implements MvpView {
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
+public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 
     private ProgressDialog mProgressDialog;
+    Unbinder unbinder;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutResourceId());
+        unbinder = ButterKnife.bind(this);
+    }
+
+    protected abstract int getLayoutResourceId();
 
     @Override
     public void showLoading() {
@@ -70,5 +85,9 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

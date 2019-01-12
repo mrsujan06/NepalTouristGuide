@@ -13,11 +13,12 @@ import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class Mountain extends BaseActivity implements MountainView {
+public class MountainActivity extends BaseActivity implements MountainView {
+
+    private static final String MOUNTAINS_IN_NEPAL = "Mountains+in+nepal";
 
     @BindView(R.id.mountainRV)
     RecyclerView mRecyclerView;
@@ -26,22 +27,26 @@ public class Mountain extends BaseActivity implements MountainView {
     MountainPresenter mMountainPresenter;
 
     private MountainAdapter mAdapter;
-    private static final String API_KEY_MOUNTAIN = API_KEY;
-    private String mountainInNepal = "Mountains+in+nepal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mountain);
 
         ((App) getApplication()).getAppComponent().inject(this);
 
         mMountainPresenter.bind(this);
 
-        ButterKnife.bind(this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(MountainActivity.this));
+        getMountainsInNepal();
+    }
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(Mountain.this));
-        mMountainPresenter.listOfMountain(mountainInNepal, API_KEY_MOUNTAIN);
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_mountain;
+    }
+
+    private void getMountainsInNepal(){
+        mMountainPresenter.listOfMountain(MOUNTAINS_IN_NEPAL, API_KEY);
     }
 
     @Override

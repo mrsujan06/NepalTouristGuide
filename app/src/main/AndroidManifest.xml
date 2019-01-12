@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".placeOptions.PlacesOptions"
+            android:name=".placeOptions.PlacesOptionsActivity"
             android:label="@string/pokhara"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".camping.CampingActivity" />
         <activity android:name=".restaurant.RestaurantActivity" />
         <activity android:name=".cashMachine.CashMachineActivity" />
-        <activity android:name=".mountain.Mountain"></activity>
+        <activity android:name=".mountain.MountainActivity"></activity>
     </application>
 
 </manifest>

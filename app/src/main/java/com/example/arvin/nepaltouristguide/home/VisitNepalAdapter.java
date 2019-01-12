@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptions;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
 import com.squareup.picasso.Picasso;
 
 public class VisitNepalAdapter extends RecyclerView.Adapter<VisitNepalAdapter.NepalAdapterViewHolder> {
@@ -70,7 +70,7 @@ public class VisitNepalAdapter extends RecyclerView.Adapter<VisitNepalAdapter.Ne
         @Override
         public void onClick(View v) {
 
-            Intent intent = new Intent(App.getInstance().getContext(), PlacesOptions.class);
+            Intent intent = new Intent(App.getInstance().getContext(), PlacesOptionsActivity.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
             v.getContext().startActivity(intent);

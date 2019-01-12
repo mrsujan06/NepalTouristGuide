@@ -68,7 +68,7 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(App.getInstance().getContext(), Mountain.class);
+            Intent intent = new Intent(App.getInstance().getContext(), MountainActivity.class);
             intent.putExtra("place_photo", mApiResponse.getResults().get(getAdapterPosition()).getPhotos().get(0).getPhotoReference());
             intent.putExtra("place_name", mApiResponse.getResults().get(getAdapterPosition()).getName());
 
