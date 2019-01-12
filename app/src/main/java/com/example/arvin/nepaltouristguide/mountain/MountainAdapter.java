@@ -44,8 +44,6 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
         } catch (Exception e) {
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
 
@@ -67,7 +65,6 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), Mountain.class);
@@ -79,6 +76,5 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.Mounta
 
         }
     }
-
 
 }

@@ -55,7 +55,7 @@ public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
                     }
                 });
 
-         getMvpView().onFetchDataProgress();
+        getMvpView().onFetchDataProgress();
 
     }
 

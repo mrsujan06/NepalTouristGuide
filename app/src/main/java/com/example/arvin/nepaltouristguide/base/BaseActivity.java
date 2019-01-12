@@ -2,26 +2,21 @@ package com.example.arvin.nepaltouristguide.base;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.example.arvin.nepaltouristguide.utils.CommonUtils;
 
 public class BaseActivity extends AppCompatActivity implements MvpView {
 
     private ProgressDialog mProgressDialog;
-
 
     @Override
     public void showLoading() {
@@ -52,7 +47,6 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
         } else {
             showSnackBar(getString(R.string.some_error));
         }
-
     }
 
     public void showMessage(String message) {

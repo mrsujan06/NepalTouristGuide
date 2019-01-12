@@ -22,7 +22,6 @@ public class MountainPresenter extends BasePresenter<MountainView> {
         this.mApiNepalServiceInteractor = apiNepalServiceInteractor;
     }
 
-
     @SuppressLint("CheckResult")
     public void listOfMountain(String query, String key) {
 
@@ -50,7 +49,7 @@ public class MountainPresenter extends BasePresenter<MountainView> {
                     }
                 });
 
-         getMvpView().onFetchDataProgress();
+        getMvpView().onFetchDataProgress();
 
     }
 }

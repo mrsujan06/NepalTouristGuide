@@ -1,6 +1,5 @@
 package com.example.arvin.nepaltouristguide.camping;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +7,8 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.base.MvpView;
 import com.example.arvin.nepaltouristguide.dagger.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;;
-import com.example.arvin.nepaltouristguide.home.VisitNepalPresenter;
-import com.example.arvin.nepaltouristguide.home.VisitNepalView;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;

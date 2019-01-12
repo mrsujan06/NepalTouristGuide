@@ -66,7 +66,6 @@ public class VisitNepalAdapter extends RecyclerView.Adapter<VisitNepalAdapter.Ne
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
 

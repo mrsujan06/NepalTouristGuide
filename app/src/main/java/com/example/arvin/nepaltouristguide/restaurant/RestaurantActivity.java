@@ -1,6 +1,5 @@
 package com.example.arvin.nepaltouristguide.restaurant;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +7,8 @@ import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.camping.CampingAdapter;
 import com.example.arvin.nepaltouristguide.dagger.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.home.VisitNepalPresenter;
-import com.example.arvin.nepaltouristguide.home.VisitNepalView;
 
 import javax.inject.Inject;
 
@@ -21,7 +17,6 @@ import butterknife.ButterKnife;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-
 public class RestaurantActivity extends BaseActivity implements RestaurantView {
 
     @BindView(R.id.restaurantRV)
@@ -29,7 +24,6 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
     @Inject
     RestaurantPresenter mRestaurantPresenter;
     RestaurantAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +38,6 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
         mRestaurantPresenter.listAllRestaurants("Restaurants+in+" + place_name, API_KEY);
-
-
     }
 
 
@@ -63,7 +55,7 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
 
     @Override
     public void onFetchDataError(String error) {
-        Toast.makeText(this , "Error on Restaurant Activity" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error on Restaurant Activity", Toast.LENGTH_SHORT).show();
         hideLoading();
     }
 

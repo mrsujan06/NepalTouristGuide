@@ -3,7 +3,6 @@ package com.example.arvin.nepaltouristguide.camping;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-
 import com.example.arvin.nepaltouristguide.base.BasePresenter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
