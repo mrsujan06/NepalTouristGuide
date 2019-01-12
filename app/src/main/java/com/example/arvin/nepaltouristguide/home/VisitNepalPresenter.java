@@ -26,7 +26,7 @@ public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
      * Methods
      ***/
     @SuppressLint("CheckResult")
-    public void networkCall() {
+    public void getTopCitiesInNepal() {
 
         getApiNepalServiceInteractor().getTopCitiesInNepal()
                 .subscribeOn(Schedulers.io())

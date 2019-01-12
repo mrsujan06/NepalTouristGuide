@@ -29,7 +29,6 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cash_machine);
 
         ((App) getApplication()).getAppComponent().inject(this);
         mCashMachinePresenter.bind(this);
@@ -37,8 +36,13 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
         ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachineActivity.this));
 
-        String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mCashMachinePresenter.listAllCashMachine(place_name, API_KEY);
+        String place_Name = (String) getIntent().getExtras().getSerializable("cityname");
+        mCashMachinePresenter.listAllCashMachine(place_Name, API_KEY);
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_cash_machine;
     }
 
     @Override
@@ -57,7 +61,6 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
     public void onFetchDataError(String error) {
         showMessage(error);
         hideLoading();
-
     }
 
     @Override

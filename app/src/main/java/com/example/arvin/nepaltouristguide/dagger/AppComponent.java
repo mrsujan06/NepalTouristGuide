@@ -3,7 +3,7 @@ package com.example.arvin.nepaltouristguide.dagger;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
 import com.example.arvin.nepaltouristguide.home.VisitNepalActivity;
 import com.example.arvin.nepaltouristguide.cashMachine.CashMachineActivity;
-import com.example.arvin.nepaltouristguide.mountain.Mountain;
+import com.example.arvin.nepaltouristguide.mountain.MountainActivity;
 import com.example.arvin.nepaltouristguide.restaurant.RestaurantActivity;
 
 import dagger.Component;
@@ -18,6 +18,6 @@ public interface AppComponent {
 
     void inject(CashMachineActivity cashMachineActivity);
 
-    void inject(Mountain mountain);
+    void inject(MountainActivity mountain);
 
 }

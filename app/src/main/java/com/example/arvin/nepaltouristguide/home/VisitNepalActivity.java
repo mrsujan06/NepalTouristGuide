@@ -13,10 +13,8 @@ import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
-
 
     @BindView(R.id.rv)
     RecyclerView mRecyclerView;
@@ -29,16 +27,19 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         ((App) getApplication()).getAppComponent().inject(this);
-        ButterKnife.bind(this);
-
         mVisitNepalPresenter.bind(this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        getTopCitiesInNepal();
+    }
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(VisitNepalActivity.this));
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_visit_nepal;
+    }
 
-        mVisitNepalPresenter.networkCall();
+    private void getTopCitiesInNepal(){
+        mVisitNepalPresenter.getTopCitiesInNepal();
     }
 
     @Override

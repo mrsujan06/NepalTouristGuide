@@ -13,7 +13,6 @@ import com.example.arvin.nepaltouristguide.model.ApiResponse;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
@@ -26,21 +25,27 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
     RestaurantPresenter mRestaurantPresenter;
 
     private RestaurantAdapter mAdapter;
-    private static final String API_KEY_RESTAURANT = API_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_activity);
 
         ((App) getApplication()).getAppComponent().inject(RestaurantActivity.this);
         mRestaurantPresenter.bind(this);
 
-        ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(RestaurantActivity.this));
 
         String place_name = (String) getIntent().getExtras().getSerializable("cityname");
-        mRestaurantPresenter.listAllRestaurants(place_name, API_KEY_RESTAURANT);
+        getResturantsByPlace(place_name);
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_restaurant;
+    }
+
+    private void getResturantsByPlace(String place_name){
+        mRestaurantPresenter.listAllRestaurants(place_name, API_KEY);
     }
 
     @Override
