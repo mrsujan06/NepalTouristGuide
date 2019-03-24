@@ -31,7 +31,8 @@ public class VisitNepalPresenter extends BasePresenter<VisitNepalView> {
         getApiNepalServiceInteractor().getTopCitiesInNepal()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ApiResponse>() {
+                .subscribe(new Consumer<ApiResponse>()
+                {
 
                     @Override
                     public void accept(ApiResponse apiResponse) throws Exception {

@@ -1,20 +1,22 @@
 package com.example.arvin.nepaltouristguide.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
+public class VisitNepalActivity extends BaseActivity implements VisitNepalView, OnCitySelectedInterface {
 
     @BindView(R.id.rv)
     RecyclerView mRecyclerView;
@@ -24,10 +26,14 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
 
     private VisitNepalAdapter mAdapter;
 
+    public static final String PLACE_PHOTO = "place_photo";
+    public static final String PLACE_NAME = "place_name";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((App) getApplication()).getAppComponent().inject(this);
+
         mVisitNepalPresenter.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getTopCitiesInNepal();
@@ -38,7 +44,7 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
         return R.layout.activity_visit_nepal;
     }
 
-    private void getTopCitiesInNepal(){
+    private void getTopCitiesInNepal() {
         mVisitNepalPresenter.getTopCitiesInNepal();
     }
 
@@ -49,7 +55,8 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
 
     @Override
     public void onFetchDataSuccess(ApiResponse response) {
-        mAdapter = new VisitNepalAdapter(response, this);
+        OnCitySelectedInterface mListener = VisitNepalActivity.this;
+        mAdapter = new VisitNepalAdapter(response, mListener);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
     }
@@ -66,4 +73,12 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView {
         mVisitNepalPresenter.unbind();
     }
 
+    @Override
+    public void onCitySelected(int index, ApiResponse mApiResponse) {
+        Intent intent = new Intent(App.getInstance().getContext(), PlacesOptionsActivity.class);
+        intent.putExtra(PLACE_PHOTO, mApiResponse.getResults().get(index).getPhotos().get(0).getPhotoReference());
+        intent.putExtra(PLACE_NAME, mApiResponse.getResults().get(index).getName());
+        startActivity(intent);
+        Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+    }
 }

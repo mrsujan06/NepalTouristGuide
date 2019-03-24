@@ -2,8 +2,6 @@ package com.example.arvin.nepaltouristguide.model;
 
 import java.util.List;
 
-import com.example.arvin.nepaltouristguide.model.Geometry;
-import com.example.arvin.nepaltouristguide.model.OpeningHours;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
