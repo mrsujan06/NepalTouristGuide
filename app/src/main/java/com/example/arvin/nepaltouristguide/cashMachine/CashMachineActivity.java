@@ -76,5 +76,4 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
         mCashMachinePresenter.unbind();
         super.onDestroy();
     }
-
 }

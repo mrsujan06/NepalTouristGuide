@@ -33,7 +33,6 @@ public class MountainActivity extends BaseActivity implements MountainView, OnMo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         ((App) getApplication()).getAppComponent().inject(this);
 
         mMountainPresenter.bind(this);

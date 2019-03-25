@@ -15,6 +15,5 @@ public class VisitNepalAdapter extends BaseAdapter {
     @Override
     protected void onListItemSelected(int index, ApiResponse mApiResponse) {
         mListener.onCitySelected(index, mApiResponse);
-
     }
 }

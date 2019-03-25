@@ -69,7 +69,6 @@ public class CampingActivity extends BaseActivity implements CampingView, OnCamp
         hideLoading();
     }
 
-
     @Override
     protected void onDestroy() {
         mCampingPresenter.unbind();

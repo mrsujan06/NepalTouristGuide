@@ -15,6 +15,5 @@ public class CampingAdapter extends BaseAdapter {
     @Override
     protected void onListItemSelected(int index, ApiResponse mApiResponse) {
         mListener.onCampingSelected(index, mApiResponse);
-
     }
 }
