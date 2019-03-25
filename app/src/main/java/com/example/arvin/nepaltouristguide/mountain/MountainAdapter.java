@@ -1,9 +1,9 @@
 package com.example.arvin.nepaltouristguide.mountain;
 
-import com.example.arvin.nepaltouristguide.base.BaseVisitNepalAdapter;
+import com.example.arvin.nepaltouristguide.base.BaseAdapter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
-public class MountainAdapter extends BaseVisitNepalAdapter {
+public class MountainAdapter extends BaseAdapter {
 
     private final OnMountainSelectedInterface mListener;
 

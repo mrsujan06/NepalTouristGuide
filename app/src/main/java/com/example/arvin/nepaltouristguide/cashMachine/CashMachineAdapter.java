@@ -1,9 +1,9 @@
 package com.example.arvin.nepaltouristguide.cashMachine;
 
-import com.example.arvin.nepaltouristguide.base.BaseVisitNepalAdapter;
+import com.example.arvin.nepaltouristguide.base.BaseAdapter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
-public class CashMachineAdapter extends BaseVisitNepalAdapter {
+public class CashMachineAdapter extends BaseAdapter {
 
     OnCashSeletedInterface mListener;
 
