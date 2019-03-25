@@ -111,18 +111,6 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView, 
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            Toast.makeText(VisitNepalActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         mVisitNepalPresenter.unbind();

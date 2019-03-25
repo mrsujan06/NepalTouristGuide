@@ -25,7 +25,7 @@ public class RestaurantPresenter extends BasePresenter<RestaurantView> {
     @SuppressLint("CheckResult")
     public void listAllRestaurants(String query, String key) {
 
-        query = "Restaurants+in+" + query.toUpperCase();
+        query = "Top+restaurants+in+" + query.toUpperCase();
         getApiNepalServiceInteractor().getRestaurants(query, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

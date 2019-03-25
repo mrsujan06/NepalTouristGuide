@@ -7,8 +7,6 @@ import com.example.arvin.nepaltouristguide.model.ApiResponse;
 public interface VisitNepalView extends MvpView {
 
     void onFetchDataProgress();
-
     void onFetchDataSuccess(ApiResponse response);
-
     void onFetchDataError(String error);
 }
