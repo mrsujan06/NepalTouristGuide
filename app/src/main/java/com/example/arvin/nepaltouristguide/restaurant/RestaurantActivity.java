@@ -69,14 +69,14 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView, 
     }
 
     @Override
-    protected void onDestroy() {
-        mRestaurantPresenter.unbind();
-        super.onDestroy();
-    }
-
-    @Override
     public void onRestaurantSelected(int index, ApiResponse mApiResponse) {
         Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        mRestaurantPresenter.unbind();
+        super.onDestroy();
     }
 }

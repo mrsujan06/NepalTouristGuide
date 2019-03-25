@@ -1,10 +1,10 @@
 package com.example.arvin.nepaltouristguide.restaurant;
 
 
-import com.example.arvin.nepaltouristguide.base.BaseRecyclerViewAdapter;
+import com.example.arvin.nepaltouristguide.base.BaseVisitNepalAdapter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
-public class RestaurantAdapter extends BaseRecyclerViewAdapter {
+public class RestaurantAdapter extends BaseVisitNepalAdapter {
 
     private final OnRestaurantSelectedInterface mListener;
 

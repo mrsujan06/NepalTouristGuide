@@ -1,9 +1,9 @@
 package com.example.arvin.nepaltouristguide.camping;
 
-import com.example.arvin.nepaltouristguide.base.BaseRecyclerViewAdapter;
+import com.example.arvin.nepaltouristguide.base.BaseVisitNepalAdapter;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
-public class CampingAdapter extends BaseRecyclerViewAdapter {
+public class CampingAdapter extends BaseVisitNepalAdapter {
 
     OnCampingSelectedInterface mListener;
 

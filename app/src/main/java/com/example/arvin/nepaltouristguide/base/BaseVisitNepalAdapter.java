@@ -15,25 +15,23 @@ import com.example.arvin.nepaltouristguide.model.api.ApiList;
 import com.squareup.picasso.Picasso;
 
 
-public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseRecyclerViewAdapterViewHolder> {
+public abstract class BaseVisitNepalAdapter extends RecyclerView.Adapter<BaseVisitNepalAdapter.BaseRecyclerViewAdapterViewHolder> {
 
     ApiResponse mApiResponse;
 
-    public BaseRecyclerViewAdapter(ApiResponse mApiResponse) {
+    public BaseVisitNepalAdapter(ApiResponse mApiResponse) {
         this.mApiResponse = mApiResponse;
     }
 
     @Override
-    public BaseRecyclerViewAdapter.BaseRecyclerViewAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseVisitNepalAdapter.BaseRecyclerViewAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_of_places_layout, parent, false);
-        return new BaseRecyclerViewAdapter.BaseRecyclerViewAdapterViewHolder(view);
+        return new BaseVisitNepalAdapter.BaseRecyclerViewAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseRecyclerViewAdapter.BaseRecyclerViewAdapterViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull BaseVisitNepalAdapter.BaseRecyclerViewAdapterViewHolder holder, int position) {
         holder.bindView(position);
-
     }
 
     @Override
@@ -75,7 +73,6 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseR
             onListItemSelected(mIndex, mApiResponse);
         }
     }
-
     protected abstract void onListItemSelected(int index, ApiResponse mApiResponse);
 
 }

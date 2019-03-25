@@ -67,14 +67,14 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
     }
 
     @Override
+    public void onCashSelected(int index, ApiResponse apiResponse) {
+        Toast.makeText(this, apiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     protected void onDestroy() {
         mCashMachinePresenter.unbind();
         super.onDestroy();
     }
 
-
-    @Override
-    public void onCashSelected(int index, ApiResponse apiResponse) {
-        Toast.makeText(this, apiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
-    }
 }

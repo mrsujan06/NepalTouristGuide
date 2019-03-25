@@ -50,6 +50,5 @@ public class MountainPresenter extends BasePresenter<MountainView> {
                 });
 
         getMvpView().onFetchDataProgress();
-
     }
 }

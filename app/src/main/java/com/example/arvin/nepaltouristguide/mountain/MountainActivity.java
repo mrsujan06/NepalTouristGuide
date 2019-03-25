@@ -71,18 +71,17 @@ public class MountainActivity extends BaseActivity implements MountainView, OnMo
     }
 
     @Override
-    protected void onDestroy() {
-        mMountainPresenter.unbind();
-        super.onDestroy();
-    }
-
-
-    @Override
     public void onMountainSelected(int index, ApiResponse mApiResponse) {
         Intent intent = new Intent(getApplicationContext(), MountainActivity.class);
         intent.putExtra("place_photo", mApiResponse.getResults().get(index).getName());
         startActivity(intent);
 
         Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mMountainPresenter.unbind();
+        super.onDestroy();
     }
 }

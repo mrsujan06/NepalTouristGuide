@@ -53,7 +53,6 @@ public class PlacesOptionsActivity extends AppCompatActivity {
             place_name = (String) getIntent().getExtras().getSerializable(VisitNepalActivity.PLACE_NAME);
             setImage(place_photo, place_name);
         }
-
     }
 
     private void setImage(String place_photo, String place_name) {
