@@ -51,8 +51,5 @@ public class CampingPresenter extends BasePresenter<CampingView> {
                 });
 
         getMvpView().onFetchDataProgress();
-
     }
-
-
 }

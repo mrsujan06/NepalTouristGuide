@@ -3,11 +3,13 @@ package com.example.arvin.nepaltouristguide.cashMachine;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
 
 import javax.inject.Inject;
 
@@ -16,7 +18,7 @@ import butterknife.ButterKnife;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class CashMachineActivity extends BaseActivity implements CashMachineView {
+public class CashMachineActivity extends BaseActivity implements CashMachineView, OnCashSeletedInterface {
 
     @BindView(R.id.cashmachineRV)
     RecyclerView mRecyclerView;
@@ -36,7 +38,7 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
         ButterKnife.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CashMachineActivity.this));
 
-        String place_Name = (String) getIntent().getExtras().getSerializable("cityname");
+        String place_Name = (String) getIntent().getExtras().getSerializable(PlacesOptionsActivity.CITY_NAME);
         mCashMachinePresenter.listAllCashMachine(place_Name, API_KEY);
     }
 
@@ -52,7 +54,8 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
 
     @Override
     public void onFetchDataSuccess(ApiResponse response) {
-        mAdapter = new CashMachineAdapter(response, this);
+        OnCashSeletedInterface mListener = CashMachineActivity.this;
+        mAdapter = new CashMachineAdapter(response, mListener);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
     }
@@ -61,6 +64,11 @@ public class CashMachineActivity extends BaseActivity implements CashMachineView
     public void onFetchDataError(String error) {
         showMessage(error);
         hideLoading();
+    }
+
+    @Override
+    public void onCashSelected(int index, ApiResponse apiResponse) {
+        Toast.makeText(this, apiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

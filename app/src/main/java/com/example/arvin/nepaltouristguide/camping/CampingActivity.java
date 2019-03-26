@@ -5,18 +5,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.App;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;;
+import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class CampingActivity extends BaseActivity implements CampingView {
+;
+
+public class CampingActivity extends BaseActivity implements CampingView, OnCampingSelectedInterface {
 
     @BindView(R.id.campingRV)
     RecyclerView mRecyclerView;
@@ -34,7 +37,7 @@ public class CampingActivity extends BaseActivity implements CampingView {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(CampingActivity.this));
 
-        String place_Name = (String) getIntent().getExtras().getSerializable("cityname");
+        String place_Name = (String) getIntent().getExtras().getSerializable(PlacesOptionsActivity.CITY_NAME);
         getCampingSpotsByPlace(place_Name);
     }
 
@@ -43,7 +46,7 @@ public class CampingActivity extends BaseActivity implements CampingView {
         return R.layout.activity_camping;
     }
 
-    private void getCampingSpotsByPlace(String placeName){
+    private void getCampingSpotsByPlace(String placeName) {
         mCampingPresenter.listAllCampingSpots(placeName, API_KEY);
     }
 
@@ -54,7 +57,8 @@ public class CampingActivity extends BaseActivity implements CampingView {
 
     @Override
     public void onFetchDataSuccess(ApiResponse response) {
-        mAdapter = new CampingAdapter(response, this);
+        OnCampingSelectedInterface listener = CampingActivity.this;
+        mAdapter = new CampingAdapter(response, listener);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
     }
@@ -65,11 +69,15 @@ public class CampingActivity extends BaseActivity implements CampingView {
         hideLoading();
     }
 
-
     @Override
     protected void onDestroy() {
         mCampingPresenter.unbind();
         super.onDestroy();
     }
 
+    @Override
+    public void onCampingSelected(int index, ApiResponse mApiResponse) {
+        Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+
+    }
 }

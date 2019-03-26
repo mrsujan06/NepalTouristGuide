@@ -5,10 +5,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import butterknife.BindView;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class RestaurantActivity extends BaseActivity implements RestaurantView {
+public class RestaurantActivity extends BaseActivity implements RestaurantView, OnRestaurantSelectedInterface {
 
     @BindView(R.id.restaurantRV)
     RecyclerView mRecyclerView;
@@ -35,7 +36,7 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(RestaurantActivity.this));
 
-        String place_name = (String) getIntent().getExtras().getSerializable("cityname");
+        String place_name = (String) getIntent().getExtras().getSerializable(PlacesOptionsActivity.CITY_NAME);
         getResturantsByPlace(place_name);
     }
 
@@ -44,7 +45,7 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
         return R.layout.activity_restaurant;
     }
 
-    private void getResturantsByPlace(String place_name){
+    private void getResturantsByPlace(String place_name) {
         mRestaurantPresenter.listAllRestaurants(place_name, API_KEY);
     }
 
@@ -55,7 +56,8 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
 
     @Override
     public void onFetchDataSuccess(ApiResponse response) {
-        mAdapter = new RestaurantAdapter(response, this);
+        OnRestaurantSelectedInterface listener = RestaurantActivity.this;
+        mAdapter = new RestaurantAdapter(response, listener);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
     }
@@ -64,6 +66,12 @@ public class RestaurantActivity extends BaseActivity implements RestaurantView {
     public void onFetchDataError(String error) {
         Toast.makeText(this, "Error on Restaurant Activity", Toast.LENGTH_SHORT).show();
         hideLoading();
+    }
+
+    @Override
+    public void onRestaurantSelected(int index, ApiResponse mApiResponse) {
+        Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

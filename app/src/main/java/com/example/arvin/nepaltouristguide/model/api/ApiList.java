@@ -9,5 +9,7 @@ public class ApiList {
     public static final String API_KEY ="AIzaSyBT2bl_XWXG7-fsWtCNyGrTD8wFxaBxbTc";
 
     public static final String QUERY ="query=Top+cities+in+Nepal&language=en&key";
+    public static final String IMAGE_URL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=";
+    public static final String AND="";
 
 }

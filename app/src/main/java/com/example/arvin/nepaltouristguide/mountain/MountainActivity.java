@@ -1,13 +1,14 @@
 package com.example.arvin.nepaltouristguide.mountain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.model.ApiResponse;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import butterknife.BindView;
 
 import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
 
-public class MountainActivity extends BaseActivity implements MountainView {
+public class MountainActivity extends BaseActivity implements MountainView, OnMountainSelectedInterface {
 
     private static final String MOUNTAINS_IN_NEPAL = "Mountains+in+nepal";
 
@@ -45,7 +46,7 @@ public class MountainActivity extends BaseActivity implements MountainView {
         return R.layout.activity_mountain;
     }
 
-    private void getMountainsInNepal(){
+    private void getMountainsInNepal() {
         mMountainPresenter.listOfMountain(MOUNTAINS_IN_NEPAL, API_KEY);
     }
 
@@ -56,7 +57,8 @@ public class MountainActivity extends BaseActivity implements MountainView {
 
     @Override
     public void onFetchDataSuccess(ApiResponse response) {
-        mAdapter = new MountainAdapter(response, this);
+        OnMountainSelectedInterface listener = MountainActivity.this;
+        mAdapter = new MountainAdapter(response, listener);
         mRecyclerView.setAdapter(mAdapter);
         hideLoading();
     }
@@ -68,9 +70,17 @@ public class MountainActivity extends BaseActivity implements MountainView {
     }
 
     @Override
+    public void onMountainSelected(int index, ApiResponse mApiResponse) {
+        Intent intent = new Intent(getApplicationContext(), MountainActivity.class);
+        intent.putExtra("place_photo", mApiResponse.getResults().get(index).getName());
+        startActivity(intent);
+
+        Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     protected void onDestroy() {
         mMountainPresenter.unbind();
         super.onDestroy();
     }
-
 }
