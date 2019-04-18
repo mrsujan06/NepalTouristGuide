@@ -1,5 +1,6 @@
 package com.example.arvin.nepaltouristguide.base;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.arvin.nepaltouristguide.R;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.model.Result;
-import com.example.arvin.nepaltouristguide.model.api.ApiList;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.Result;
+import com.example.arvin.nepaltouristguide.service.api.ApiList;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.BaseR
 
         ImageView place_image;
         TextView place_name;
+        Typeface custom_font;
         private int mIndex;
 
         public BaseRecyclerViewAdapterViewHolder(View itemView) {
@@ -57,6 +59,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.BaseR
             mIndex = itemView.getId();
             place_image = itemView.findViewById(R.id.place_picture);
             place_name = itemView.findViewById(R.id.place_name);
+            custom_font = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/Montserrat_Regular.otf");
 
             itemView.setOnClickListener(this);
         }
@@ -70,6 +73,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseAdapter.BaseR
 
                 Picasso.with(place_image.getContext()).load(imageURL).into(place_image);
                 place_name.setText(mApiResponse.getResults().get(position).getName());
+                place_name.setTypeface(custom_font);
             } catch (Exception e) {
                 Log.e("Error message is ", e.getMessage());
             }

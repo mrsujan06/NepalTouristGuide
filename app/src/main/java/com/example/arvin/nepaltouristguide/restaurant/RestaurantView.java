@@ -1,7 +1,7 @@
 package com.example.arvin.nepaltouristguide.restaurant;
 
 import com.example.arvin.nepaltouristguide.base.MvpView;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 
 public interface RestaurantView extends MvpView {
 

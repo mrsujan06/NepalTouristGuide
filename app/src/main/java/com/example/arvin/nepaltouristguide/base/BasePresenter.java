@@ -1,6 +1,6 @@
 package com.example.arvin.nepaltouristguide.base;
 
-import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
+import com.example.arvin.nepaltouristguide.service.Interactor.ApiNepalServiceInteractor;
 
 public class BasePresenter<V extends MvpView> {
 

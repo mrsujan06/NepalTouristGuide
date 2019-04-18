@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.arvin.nepaltouristguide.base.BasePresenter;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.model.Interactor.ApiNepalServiceInteractor;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
+import com.example.arvin.nepaltouristguide.service.Interactor.ApiNepalServiceInteractor;
 
 import javax.inject.Inject;
 

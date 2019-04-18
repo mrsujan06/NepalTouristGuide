@@ -8,16 +8,14 @@ import android.widget.Toast;
 import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
+import com.example.arvin.nepaltouristguide.place_options.PlacesOptionsActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
-
-;
+import static com.example.arvin.nepaltouristguide.service.api.ApiList.API_KEY;
 
 public class CampingActivity extends BaseActivity implements CampingView, OnCampingSelectedInterface {
 
@@ -78,6 +76,5 @@ public class CampingActivity extends BaseActivity implements CampingView, OnCamp
     @Override
     public void onCampingSelected(int index, ApiResponse mApiResponse) {
         Toast.makeText(this, mApiResponse.getResults().get(index).getName(), Toast.LENGTH_SHORT).show();
-
     }
 }

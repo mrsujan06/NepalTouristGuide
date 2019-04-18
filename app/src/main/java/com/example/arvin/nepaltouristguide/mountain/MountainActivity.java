@@ -9,13 +9,13 @@ import android.widget.Toast;
 import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-import static com.example.arvin.nepaltouristguide.model.api.ApiList.API_KEY;
+import static com.example.arvin.nepaltouristguide.service.api.ApiList.API_KEY;
 
 public class MountainActivity extends BaseActivity implements MountainView, OnMountainSelectedInterface {
 

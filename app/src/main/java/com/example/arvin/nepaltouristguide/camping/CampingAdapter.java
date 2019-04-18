@@ -1,7 +1,7 @@
 package com.example.arvin.nepaltouristguide.camping;
 
 import com.example.arvin.nepaltouristguide.base.BaseAdapter;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 
 public class CampingAdapter extends BaseAdapter {
 

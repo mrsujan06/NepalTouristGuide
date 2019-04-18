@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".restaurant_detail.RestaurantDetailActivity"></activity>
         <activity android:name=".home.VisitNepalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".placeOptions.PlacesOptionsActivity"
+            android:name=".place_options.PlacesOptionsActivity"
             android:label="@string/pokhara"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".camping.CampingActivity" />
         <activity android:name=".restaurant.RestaurantActivity" />
-        <activity android:name=".cashMachine.CashMachineActivity" />
-        <activity android:name=".mountain.MountainActivity"></activity>
+        <activity android:name=".cash_machine.CashMachineActivity" />
+        <activity android:name=".mountain.MountainActivity" />
     </application>
 
 </manifest>

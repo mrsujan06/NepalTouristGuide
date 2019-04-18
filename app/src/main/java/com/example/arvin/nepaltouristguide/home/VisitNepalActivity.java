@@ -11,12 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-
 import com.example.arvin.nepaltouristguide.App;
 import com.example.arvin.nepaltouristguide.R;
 import com.example.arvin.nepaltouristguide.base.BaseActivity;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
-import com.example.arvin.nepaltouristguide.placeOptions.PlacesOptionsActivity;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
+import com.example.arvin.nepaltouristguide.place_options.PlacesOptionsActivity;
 
 import javax.inject.Inject;
 
@@ -47,6 +46,7 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView, 
         mVisitNepalPresenter.bind(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getTopCitiesInNepal();
+
     }
 
     @Override
@@ -102,7 +102,6 @@ public class VisitNepalActivity extends BaseActivity implements VisitNepalView, 
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 mAdapter.getFilter().filter(newText);
                 return false;
             }

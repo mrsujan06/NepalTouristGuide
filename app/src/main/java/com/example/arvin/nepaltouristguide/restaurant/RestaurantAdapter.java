@@ -2,7 +2,7 @@ package com.example.arvin.nepaltouristguide.restaurant;
 
 
 import com.example.arvin.nepaltouristguide.base.BaseAdapter;
-import com.example.arvin.nepaltouristguide.model.ApiResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 
 public class RestaurantAdapter extends BaseAdapter {
 
