@@ -1,7 +1,7 @@
 package com.example.arvin.nepaltouristguide.service.Interactor;
 
-import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 import com.example.arvin.nepaltouristguide.model.placeDetailResponse.PlaceDetailResponse;
+import com.example.arvin.nepaltouristguide.model.placeResponse.ApiResponse;
 import com.example.arvin.nepaltouristguide.service.api.ApiNepalService;
 
 import io.reactivex.Observable;
@@ -31,29 +31,13 @@ public class ApiServiceInteractorImp implements ApiNepalServiceInteractor {
     }
 
     @Override
-    public Observable<ApiResponse> getCampingSpots(String query, String key) {
-        return mService.getCampingSpots(query, key);
+    public Observable<ApiResponse> getData(String query, String key) {
+        return mService.getData(query, key);
     }
 
     @Override
-    public Observable<ApiResponse> getRestaurants(String query, String key) {
-        return mService.getRestaurants(query, key);
+    public Observable<PlaceDetailResponse> getDetailData(String placeId, String key) {
+        return mService.getDetailData(placeId , key);
     }
-
-    @Override
-    public Observable<ApiResponse> getCashMachine(String query, String key) {
-        return mService.getCashMachine(query, key);
-    }
-
-    @Override
-    public Observable<ApiResponse> getMountains(String query, String key) {
-        return mService.getMountains();
-    }
-
-    @Override
-    public Observable<PlaceDetailResponse> getRestaurantDetail(String placeId, String key) {
-        return mService.getRestaurantDetails(placeId, key);
-    }
-
 
 }

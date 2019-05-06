@@ -34,6 +34,9 @@ public class Result {
     @SerializedName("plus_code")
     @Expose
     private PlusCode plusCode;
+    @SerializedName("price_level")
+    @Expose
+    private Integer priceLevel;
     @SerializedName("rating")
     @Expose
     private Double rating;
@@ -43,6 +46,9 @@ public class Result {
     @SerializedName("types")
     @Expose
     private List<String> types = null;
+    @SerializedName("user_ratings_total")
+    @Expose
+    private Integer userRatingsTotal;
 
     public String getFormattedAddress() {
         return formattedAddress;
@@ -116,6 +122,14 @@ public class Result {
         this.plusCode = plusCode;
     }
 
+    public Integer getPriceLevel() {
+        return priceLevel;
+    }
+
+    public void setPriceLevel(Integer priceLevel) {
+        this.priceLevel = priceLevel;
+    }
+
     public Double getRating() {
         return rating;
     }
@@ -138,6 +152,14 @@ public class Result {
 
     public void setTypes(List<String> types) {
         this.types = types;
+    }
+
+    public Integer getUserRatingsTotal() {
+        return userRatingsTotal;
+    }
+
+    public void setUserRatingsTotal(Integer userRatingsTotal) {
+        this.userRatingsTotal = userRatingsTotal;
     }
 
 }

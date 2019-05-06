@@ -2,7 +2,7 @@ package com.example.arvin.nepaltouristguide.base;
 
 import com.example.arvin.nepaltouristguide.service.Interactor.ApiNepalServiceInteractor;
 
-public class BasePresenter<V extends MvpView> {
+public abstract class BasePresenter<V extends MvpView> {
 
     protected ApiNepalServiceInteractor mApiNepalServiceInteractor;
     private V mMvpView;
@@ -19,7 +19,7 @@ public class BasePresenter<V extends MvpView> {
         return mMvpView;
     }
 
-    public ApiNepalServiceInteractor getApiNepalServiceInteractor() {
+    protected ApiNepalServiceInteractor getApiNepalServiceInteractor() {
         return mApiNepalServiceInteractor;
     }
 

@@ -1,5 +1,7 @@
 package com.example.arvin.nepaltouristguide.dagger;
 
+import com.example.arvin.nepaltouristguide.cafe.CafeActivity;
+import com.example.arvin.nepaltouristguide.cafe_detail.CafeDetailActivity;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
 import com.example.arvin.nepaltouristguide.cash_machine.CashMachineActivity;
 import com.example.arvin.nepaltouristguide.home.VisitNepalActivity;
@@ -22,5 +24,9 @@ public interface AppComponent {
     void inject(MountainActivity mountain);
 
     void inject(RestaurantDetailActivity restaurantDetailActivity);
+
+    void inject(CafeActivity cafeActivity);
+
+    void inject(CafeDetailActivity cafeDetailActivity);
 
 }

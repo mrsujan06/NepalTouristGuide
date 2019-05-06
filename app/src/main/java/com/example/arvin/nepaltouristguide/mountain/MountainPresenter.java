@@ -23,31 +23,19 @@ public class MountainPresenter extends BasePresenter<MountainView> {
     }
 
     @SuppressLint("CheckResult")
-    public void listOfMountain(String query, String key) {
+    void listOfMountain(String query, String key) {
 
-        getApiNepalServiceInteractor().getMountains(query, key)
+        query = "Mountains+in+nepal";
+        getApiNepalServiceInteractor().getData(query , key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ApiResponse>() {
+                .subscribe(apiResponse -> {
 
-                    @Override
-                    public void accept(ApiResponse apiResponse) throws Exception {
-
-                        if (getMvpView() != null) {
-                            try {
-                                getMvpView().onFetchDataSuccess(apiResponse);
-                            } catch (Exception e) {
-                                Log.i(TAG, e.getMessage());
-                            }
-                        }
-                        Log.d("Success Message", " Success");
+                    if (getMvpView() != null) {
+                            getMvpView().onFetchDataSuccess(apiResponse);
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e(TAG, throwable.getMessage());
-                    }
-                });
+                    Log.d("Success Message", " Success");
+                }, throwable -> Log.e(TAG, throwable.getMessage()));
 
         getMvpView().onFetchDataProgress();
     }

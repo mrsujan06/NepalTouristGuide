@@ -10,4 +10,17 @@
     <string name="call">Call</string>
     <string name="favourite">Favourite</string>
     <string name="contact_detail">Contact Detail</string>
+    <string name="_756_800">756, 800</string>
+    <string name="ratings_amp_reviews"><![CDATA[Ratings & Reviews]]></string>
+    <string name="top_reviews">Top Reviews</string>
+    <string name="comment">comment</string>
+    <string name="username">Username</string>
+    <string name="_02_02_1992">02/02/1992</string>
+    <string name="unknown">Unknown</string>
+    <string name="reviews">reviews</string>
+    <string name="_300">300</string>
+    <string name="cafes_in_city">Cafes in city</string>
+    <string name="cafe">Cafe</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="restaurants_in_city">Restaurants in city</string>
 </resources>

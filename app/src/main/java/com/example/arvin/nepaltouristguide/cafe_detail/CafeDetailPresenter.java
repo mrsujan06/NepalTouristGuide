@@ -1,22 +1,19 @@
-package com.example.arvin.nepaltouristguide.restaurant_detail;
+package com.example.arvin.nepaltouristguide.cafe_detail;
 
 import com.example.arvin.nepaltouristguide.detail_base.BaseDetailPresenter;
-import com.example.arvin.nepaltouristguide.detail_base.DetailMvpView;
 import com.example.arvin.nepaltouristguide.model.placeDetailResponse.PlaceDetailResponse;
 import com.example.arvin.nepaltouristguide.service.Interactor.ApiNepalServiceInteractor;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class RestaurantDetailPresenter extends BaseDetailPresenter<DetailMvpView> {
+public class CafeDetailPresenter extends BaseDetailPresenter<CafeDetailView> {
 
-    private CompositeDisposable bag = new CompositeDisposable();
 
     @Inject
-    public RestaurantDetailPresenter(ApiNepalServiceInteractor mApiNepalServiceInteractor) {
+    public CafeDetailPresenter(ApiNepalServiceInteractor mApiNepalServiceInteractor) {
         this.mApiNepalServiceInteractor = mApiNepalServiceInteractor;
     }
 
@@ -28,16 +25,17 @@ public class RestaurantDetailPresenter extends BaseDetailPresenter<DetailMvpView
                 .subscribe(placeDetailResponse ->
                         {
                             if (placeDetailResponse != null) {
-                                setRestaurantData(placeDetailResponse);
+                                setCafeData(placeDetailResponse);
                             }
                         },
                         throwable -> getMvpView().onFetchDataError(throwable.getMessage())
                 ));
 
         getMvpView().onFetchDataProgress();
+
     }
 
-    private void setRestaurantData(PlaceDetailResponse placeDetailResponse) {
+    private void setCafeData(PlaceDetailResponse placeDetailResponse) {
         getMvpView().onFetchDataSuccess(placeDetailResponse);
         updateToolbarName(placeDetailResponse.getResult().getName());
         updatePlaceName(placeDetailResponse.getResult().getName());
@@ -51,6 +49,7 @@ public class RestaurantDetailPresenter extends BaseDetailPresenter<DetailMvpView
         updateRatingBarChart();
         updateUserComments(placeDetailResponse);
         updateLocation(placeDetailResponse.getResult().getGeometry().getLocation().getLat(), placeDetailResponse.getResult().getGeometry().getLocation().getLng());
+
     }
 
 }

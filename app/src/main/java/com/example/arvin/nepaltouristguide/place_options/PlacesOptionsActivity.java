@@ -2,20 +2,23 @@ package com.example.arvin.nepaltouristguide.place_options;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.bumptech.glide.Glide;
+import com.example.arvin.nepaltouristguide.Constants;
 import com.example.arvin.nepaltouristguide.R;
+import com.example.arvin.nepaltouristguide.cafe.CafeActivity;
 import com.example.arvin.nepaltouristguide.camping.CampingActivity;
 import com.example.arvin.nepaltouristguide.cash_machine.CashMachineActivity;
 import com.example.arvin.nepaltouristguide.home.VisitNepalActivity;
-import com.example.arvin.nepaltouristguide.service.api.ApiList;
-import com.example.arvin.nepaltouristguide.mountain.MountainActivity;
 import com.example.arvin.nepaltouristguide.restaurant.RestaurantActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,8 +35,6 @@ public class PlacesOptionsActivity extends AppCompatActivity {
 
     public static final String CITY_NAME = "city_name";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class PlacesOptionsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getIncomingIntent();
 
     }
@@ -57,7 +58,7 @@ public class PlacesOptionsActivity extends AppCompatActivity {
 
     private void setImage(String place_photo, String place_name) {
 
-        Glide.with(this).asBitmap().load(ApiList.IMAGE_URL + place_photo + "&key=" + ApiList.API_KEY).into(this.placePhoto);
+        Glide.with(this).asBitmap().load(Constants.IMAGE_URL + place_photo + "&key=" + Constants.API_KEY).into(this.placePhoto);
         setTitle(place_name);
     }
 
@@ -71,9 +72,10 @@ public class PlacesOptionsActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.mountainButton)
-    public void startMountainActivity(View view) {
-        Intent intent = new Intent(view.getContext(), MountainActivity.class);
+    @OnClick(R.id.cafeButton)
+    public void startCafeActivity(View view) {
+        Intent intent = new Intent(view.getContext(), CafeActivity.class);
+        intent.putExtra(CITY_NAME, place_name);
         view.getContext().startActivity(intent);
     }
 

@@ -1,8 +1,8 @@
 package com.example.arvin.nepaltouristguide.camping;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.arvin.nepaltouristguide.App;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-import static com.example.arvin.nepaltouristguide.service.api.ApiList.API_KEY;
+import static com.example.arvin.nepaltouristguide.Constants.API_KEY;
 
 public class CampingActivity extends BaseActivity implements CampingView, OnCampingSelectedInterface {
 
